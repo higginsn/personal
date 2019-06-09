@@ -1,0 +1,3 @@
+[submodule "quickstart/themes/hugo-future-imperfect-slim"]
+	path = quickstart/themes/hugo-future-imperfect-slim
+	url = https://github.com/pacollins/hugo-future-imperfect-slim.git
