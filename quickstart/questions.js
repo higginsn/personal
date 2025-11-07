@@ -28,7 +28,210 @@ const AJAH_DESCRIPTIONS = {
   [AJAHS.BROWN]: 'Scholars and historians who immerse themselves in knowledge and study. Brown sisters often become so absorbed in their research they lose track of the world around them.'
 };
 
-const QUESTIONS = [
+const PERSONALITY_QUESTIONS = [
+  {
+    id: 1,
+    question: "When facing a difficult problem, you prefer to:",
+    answers: [
+      { text: "Analyze it logically and systematically", ajahs: [AJAHS.WHITE] },
+      { text: "Take immediate action to solve it", ajahs: [AJAHS.GREEN, AJAHS.RED] },
+      { text: "Research similar situations from the past", ajahs: [AJAHS.BROWN] },
+      { text: "Talk it through with others to find common ground", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] }
+    ]
+  },
+  {
+    id: 2,
+    question: "In a group project, you naturally gravitate toward:",
+    answers: [
+      { text: "Leading and organizing the team", ajahs: [AJAHS.RED, AJAHS.BLUE] },
+      { text: "Being the mediator when conflicts arise", ajahs: [AJAHS.GRAY] },
+      { text: "Doing research and gathering information", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
+      { text: "Supporting others and keeping morale high", ajahs: [AJAHS.YELLOW] }
+    ]
+  },
+  {
+    id: 3,
+    question: "You believe the best way to change the world is through:",
+    answers: [
+      { text: "Direct action and fighting for what's right", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
+      { text: "Building bridges and fostering understanding", ajahs: [AJAHS.GRAY] },
+      { text: "Education and spreading knowledge", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
+      { text: "Healing wounds and helping individuals", ajahs: [AJAHS.YELLOW] }
+    ]
+  },
+  {
+    id: 4,
+    question: "When someone comes to you with a problem, you:",
+    answers: [
+      { text: "Help them think through logical solutions", ajahs: [AJAHS.WHITE] },
+      { text: "Offer emotional support and comfort", ajahs: [AJAHS.YELLOW] },
+      { text: "Share similar experiences and wisdom", ajahs: [AJAHS.BROWN] },
+      { text: "Help them navigate the social dynamics involved", ajahs: [AJAHS.GRAY] }
+    ]
+  },
+  {
+    id: 5,
+    question: "Your ideal weekend involves:",
+    answers: [
+      { text: "Physical activity or adventure", ajahs: [AJAHS.GREEN] },
+      { text: "Reading, studying, or learning something new", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
+      { text: "Volunteering or helping others", ajahs: [AJAHS.YELLOW] },
+      { text: "Socializing and connecting with people", ajahs: [AJAHS.GRAY, AJAHS.BLUE] }
+    ]
+  },
+  {
+    id: 6,
+    question: "When making an important decision, you rely most on:",
+    answers: [
+      { text: "Pure logic and objective analysis", ajahs: [AJAHS.WHITE] },
+      { text: "Your gut instinct and experience", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
+      { text: "Historical precedents and research", ajahs: [AJAHS.BROWN] },
+      { text: "How it will affect others", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
+    ]
+  },
+  {
+    id: 7,
+    question: "People often describe you as:",
+    answers: [
+      { text: "Passionate and driven", ajahs: [AJAHS.BLUE, AJAHS.RED] },
+      { text: "Brave and protective", ajahs: [AJAHS.GREEN] },
+      { text: "Wise and knowledgeable", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
+      { text: "Caring and diplomatic", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
+    ]
+  },
+  {
+    id: 8,
+    question: "In your career, you prioritize:",
+    answers: [
+      { text: "Making a meaningful impact on society", ajahs: [AJAHS.BLUE] },
+      { text: "Protecting or defending others", ajahs: [AJAHS.GREEN] },
+      { text: "Understanding and mastering your field", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
+      { text: "Building relationships and consensus", ajahs: [AJAHS.GRAY] }
+    ]
+  },
+  {
+    id: 9,
+    question: "When you see injustice, you:",
+    answers: [
+      { text: "Feel compelled to fight against it directly", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
+      { text: "Work to create systems that prevent it", ajahs: [AJAHS.RED, AJAHS.WHITE] },
+      { text: "Try to mediate and find fair solutions", ajahs: [AJAHS.GRAY] },
+      { text: "Focus on helping the victims", ajahs: [AJAHS.YELLOW] }
+    ]
+  },
+  {
+    id: 10,
+    question: "Your approach to learning new things is:",
+    answers: [
+      { text: "Hands-on practice and experimentation", ajahs: [AJAHS.GREEN] },
+      { text: "Deep study and theoretical understanding", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
+      { text: "Learning from others and collaboration", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] },
+      { text: "Focused on practical applications", ajahs: [AJAHS.BLUE, AJAHS.RED] }
+    ]
+  },
+  {
+    id: 11,
+    question: "In stressful situations, you tend to:",
+    answers: [
+      { text: "Take charge and direct others", ajahs: [AJAHS.RED, AJAHS.BLUE] },
+      { text: "Stay calm and think logically", ajahs: [AJAHS.WHITE] },
+      { text: "Focus on keeping everyone safe and calm", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] },
+      { text: "Draw on past experiences for guidance", ajahs: [AJAHS.BROWN] }
+    ]
+  },
+  {
+    id: 12,
+    question: "You feel most fulfilled when:",
+    answers: [
+      { text: "Achieving ambitious goals", ajahs: [AJAHS.BLUE, AJAHS.RED] },
+      { text: "Protecting those you care about", ajahs: [AJAHS.GREEN] },
+      { text: "Discovering or preserving knowledge", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
+      { text: "Helping others overcome challenges", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
+    ]
+  },
+  {
+    id: 13,
+    question: "Your philosophy on rules and authority is:",
+    answers: [
+      { text: "Rules maintain necessary order and structure", ajahs: [AJAHS.RED, AJAHS.WHITE] },
+      { text: "Rules should be flexible based on circumstances", ajahs: [AJAHS.GRAY, AJAHS.BLUE] },
+      { text: "Rules are less important than helping people", ajahs: [AJAHS.YELLOW] },
+      { text: "Historical context helps us understand rules", ajahs: [AJAHS.BROWN] }
+    ]
+  },
+  {
+    id: 14,
+    question: "When working on a long-term project, you:",
+    answers: [
+      { text: "Create detailed plans and systems", ajahs: [AJAHS.WHITE, AJAHS.RED] },
+      { text: "Stay adaptable and ready for anything", ajahs: [AJAHS.GREEN, AJAHS.GRAY] },
+      { text: "Research thoroughly before beginning", ajahs: [AJAHS.BROWN] },
+      { text: "Focus on how it will benefit others", ajahs: [AJAHS.BLUE, AJAHS.YELLOW] }
+    ]
+  },
+  {
+    id: 15,
+    question: "Your greatest strength is:",
+    answers: [
+      { text: "Your unwavering determination", ajahs: [AJAHS.BLUE, AJAHS.RED] },
+      { text: "Your courage under pressure", ajahs: [AJAHS.GREEN] },
+      { text: "Your analytical mind", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
+      { text: "Your empathy and understanding", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
+    ]
+  },
+  {
+    id: 16,
+    question: "In debates or discussions, you:",
+    answers: [
+      { text: "Present logical arguments backed by evidence", ajahs: [AJAHS.WHITE] },
+      { text: "Speak passionately about your beliefs", ajahs: [AJAHS.BLUE] },
+      { text: "Seek consensus and common ground", ajahs: [AJAHS.GRAY] },
+      { text: "Reference historical examples", ajahs: [AJAHS.BROWN] }
+    ]
+  },
+  {
+    id: 17,
+    question: "You're most interested in:",
+    answers: [
+      { text: "Political systems and social change", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
+      { text: "Physical skills and self-improvement", ajahs: [AJAHS.GREEN] },
+      { text: "Academic subjects and theories", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
+      { text: "Psychology and human wellbeing", ajahs: [AJAHS.YELLOW] }
+    ]
+  },
+  {
+    id: 18,
+    question: "When you fail at something, you:",
+    answers: [
+      { text: "Analyze what went wrong objectively", ajahs: [AJAHS.WHITE] },
+      { text: "Get back up and try again immediately", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
+      { text: "Research better approaches for next time", ajahs: [AJAHS.BROWN] },
+      { text: "Consider how to prevent others from the same mistake", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
+    ]
+  },
+  {
+    id: 19,
+    question: "Your ideal work environment is:",
+    answers: [
+      { text: "Dynamic and action-oriented", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
+      { text: "Quiet and contemplative", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
+      { text: "Collaborative and team-focused", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] },
+      { text: "Structured and well-organized", ajahs: [AJAHS.RED] }
+    ]
+  },
+  {
+    id: 20,
+    question: "What legacy would you most want to leave?",
+    answers: [
+      { text: "A world that's more just and fair", ajahs: [AJAHS.BLUE] },
+      { text: "Having protected those who couldn't protect themselves", ajahs: [AJAHS.GREEN] },
+      { text: "Knowledge preserved for future generations", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
+      { text: "Lives improved through your compassion", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
+    ]
+  }
+];
+
+const LORE_QUESTIONS = [
   {
     id: 1,
     question: "A great war is approaching. How do you prepare?",
@@ -534,5 +737,7 @@ const QUESTIONS = [
 const CONFIG = {
   randomizeQuestions: true,
   testMode: false,
-  testQuestionCount: 3
+  testQuestionCount: 3,
+  personalityQuizLength: 10,
+  loreQuizLength: 10
 };
