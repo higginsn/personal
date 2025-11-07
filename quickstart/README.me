@@ -1,0 +1,64 @@
+README.me
+# Ajah Quiz - Wheel of Time
+
+A mobile-friendly quiz app to determine which Ajah from the Wheel of Time you belong to.
+
+## Features
+
+- 5 carefully crafted questions with multiple choice answers
+- Modern, mobile-friendly UI with smooth animations
+- Results displayed as a horizontal bar chart showing percentages for each Ajah
+- Easy to add new questions or modify existing ones
+- Configuration option to randomize question order
+
+## How to Use
+
+1. Open `index.html` in a web browser
+2. Click "Start Quiz" to begin
+3. Answer each question by clicking your preferred answer
+4. View your results showing which Ajah you align with most
+
+## Adding New Questions
+
+Edit `questions.js` and add a new question object to the `QUESTIONS` array:
+
+```javascript
+{
+  id: 6,
+  question: "Your question here?",
+  answers: [
+    { text: "Answer 1", ajah: AJAHS.BLUE },
+    { text: "Answer 2", ajah: AJAHS.GREEN },
+    { text: "Answer 3", ajah: AJAHS.YELLOW },
+    { text: "Answer 4", ajah: AJAHS.RED }
+  ]
+}
+```
+
+## Configuration
+
+In `questions.js`, modify the `CONFIG` object:
+
+```javascript
+const CONFIG = {
+  randomizeQuestions: false  // Set to true to randomize question order
+};
+```
+
+## The Eight Ajahs
+
+- **Blue**: Justice seekers and cause-driven
+- **Green**: Warriors and defenders (the Battle Ajah)
+- **Yellow**: Healers and caregivers
+- **Red**: Leaders and order keepers
+- **White**: Logicians and philosophers
+- **Gray**: Mediators and information gatherers
+- **Brown**: Historians and scholars
+- **Black**: Power seekers (traditionally secret)
+
+## Technical Details
+
+- Pure HTML/CSS/JavaScript (no build tools required)
+- Mobile-first responsive design
+- Smooth animations and transitions
+- No data persistence (refreshing resets the quiz)
