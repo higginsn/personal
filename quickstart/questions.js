@@ -532,7 +532,7 @@ const QUESTIONS = [
 ];
 
 const CONFIG = {
-  randomizeQuestions: false,
-  testMode: true,
+  randomizeQuestions: true,
+  testMode: false,
   testQuestionCount: 3
 };
