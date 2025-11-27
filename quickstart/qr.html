@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code - nickhiggins.us</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: white;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .container {
+      text-align: center;
+      background: white;
+      padding: 48px;
+      border-radius: 24px;
+      border: 2px solid #e2e8f0;
+      max-width: 500px;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin-bottom: 32px;
+      color: #1e293b;
+    }
+    
+    .qr-wrapper {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      display: inline-block;
+    }
+    
+    .qr-code {
+      display: block;
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Find Your Ajah Quiz</h1>
+    
+    <div class="qr-wrapper">
+      <img 
+        src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://nickhiggins.us" 
+        alt="QR Code"
+        class="qr-code"
+      />
+    </div>
+  </div>
+</body>
+</html>
+

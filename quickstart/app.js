@@ -27,13 +27,9 @@ class QuizApp {
 
   init() {
     this.showIntro();
-    document.getElementById('start-personality-btn').addEventListener('click', () => {
-      const count = CONFIG.testMode ? CONFIG.testQuestionCount : CONFIG.personalityQuizLength;
-      this.startQuiz(count, 'personality');
-    });
-    document.getElementById('start-lore-btn').addEventListener('click', () => {
-      const count = CONFIG.testMode ? CONFIG.testQuestionCount : CONFIG.loreQuizLength;
-      this.startQuiz(count, 'lore');
+    document.getElementById('start-btn').addEventListener('click', () => {
+      const count = CONFIG.testMode ? CONFIG.testQuestionCount : CONFIG.quizLength;
+      this.startQuiz(count);
     });
     document.getElementById('restart-btn').addEventListener('click', () => {
       this.restart();
@@ -49,22 +45,20 @@ class QuizApp {
     document.getElementById('results-screen').classList.add('hidden');
   }
 
-  startQuiz(length, quizType) {
+  startQuiz(length) {
     this.currentQuestionIndex = 0;
     this.scores = this.initializeScores();
     this.answerHistory = [];
     this.quizLength = length;
-    this.quizType = quizType;
-    this.questions = this.selectRandomQuestions(length, quizType);
+    this.questions = this.selectRandomQuestions(length);
     document.getElementById('intro-screen').classList.add('hidden');
     document.getElementById('quiz-screen').classList.remove('hidden');
     document.getElementById('results-screen').classList.add('hidden');
     this.renderQuestion();
   }
 
-  selectRandomQuestions(count, quizType) {
-    const questionPool = quizType === 'personality' ? PERSONALITY_QUESTIONS : LORE_QUESTIONS;
-    const shuffled = this.shuffleArray([...questionPool]);
+  selectRandomQuestions(count) {
+    const shuffled = this.shuffleArray([...QUESTIONS]);
     return shuffled.slice(0, count);
   }
 
@@ -83,19 +77,53 @@ class QuizApp {
     const answersContainer = document.getElementById('answers-container');
     answersContainer.innerHTML = '';
 
-    question.answers.forEach((answer, index) => {
+    if (question.type === 'image') {
+      answersContainer.className = 'answers image-answers';
+      this.renderImageAnswers(question.answers, answersContainer);
+    } else if (question.type === 'binary') {
+      answersContainer.className = 'answers binary-answers';
+      this.renderStandardAnswers(question.answers, answersContainer);
+    } else {
+      answersContainer.className = 'answers';
+      this.renderStandardAnswers(question.answers, answersContainer);
+    }
+  }
+
+  renderStandardAnswers(answers, container) {
+    answers.forEach((answer) => {
       const button = document.createElement('button');
       button.className = 'answer-btn';
       button.textContent = answer.text;
-      button.addEventListener('click', () => this.handleAnswer(answer.ajahs));
-      answersContainer.appendChild(button);
+      button.addEventListener('click', () => this.handleAnswer(answer.weights));
+      container.appendChild(button);
     });
   }
 
-  handleAnswer(ajahs) {
-    this.answerHistory.push(ajahs);
-    ajahs.forEach(ajah => {
-      this.scores[ajah]++;
+  renderImageAnswers(answers, container) {
+    answers.forEach((answer) => {
+      const button = document.createElement('button');
+      button.className = 'answer-btn image-answer-btn';
+      
+      const img = document.createElement('img');
+      img.src = `images/${answer.image}`;
+      img.alt = answer.text;
+      img.className = 'answer-image';
+      
+      const label = document.createElement('div');
+      label.className = 'image-answer-label';
+      label.textContent = answer.text;
+      
+      button.appendChild(img);
+      button.appendChild(label);
+      button.addEventListener('click', () => this.handleAnswer(answer.weights));
+      container.appendChild(button);
+    });
+  }
+
+  handleAnswer(weights) {
+    this.answerHistory.push(weights);
+    weights.forEach(({ajah, weight}) => {
+      this.scores[ajah] += weight;
     });
     
     if (this.currentQuestionIndex < this.questions.length - 1) {
@@ -110,8 +138,8 @@ class QuizApp {
     if (this.currentQuestionIndex > 0) {
       this.currentQuestionIndex--;
       const lastAnswer = this.answerHistory.pop();
-      lastAnswer.forEach(ajah => {
-        this.scores[ajah]--;
+      lastAnswer.forEach(({ajah, weight}) => {
+        this.scores[ajah] -= weight;
       });
       this.renderQuestion();
     } else {
@@ -120,7 +148,10 @@ class QuizApp {
   }
 
   showResults() {
-    const totalPoints = this.answerHistory.reduce((sum, ajahs) => sum + ajahs.length, 0);
+    const totalPoints = this.answerHistory.reduce((sum, weights) => {
+      return sum + weights.reduce((weightSum, {weight}) => weightSum + weight, 0);
+    }, 0);
+    
     const sortedScores = Object.entries(this.scores)
       .map(([ajah, score]) => ({
         ajah,
@@ -222,4 +253,3 @@ class QuizApp {
 document.addEventListener('DOMContentLoaded', () => {
   new QuizApp();
 });
-

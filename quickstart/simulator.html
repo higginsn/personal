@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajah Distribution Simulator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: #6366f1;
+      margin-bottom: 30px;
+      font-size: 32px;
+    }
+    
+    .controls {
+      background: #1e293b;
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    
+    .control-group {
+      margin-bottom: 16px;
+    }
+    
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #cbd5e1;
+    }
+    
+    input[type="number"] {
+      width: 200px;
+      padding: 10px 12px;
+      background: #334155;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      color: #f1f5f9;
+      font-size: 16px;
+    }
+    
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+    
+    button {
+      background: #6366f1;
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background 0.2s;
+    }
+    
+    button:hover {
+      background: #4f46e5;
+    }
+    
+    button:active {
+      transform: translateY(1px);
+    }
+    
+    button:disabled {
+      background: #475569;
+      cursor: not-allowed;
+    }
+    
+    .results {
+      background: #1e293b;
+      padding: 24px;
+      border-radius: 12px;
+      display: none;
+    }
+    
+    .results.show {
+      display: block;
+    }
+    
+    .summary {
+      margin-bottom: 24px;
+      padding: 16px;
+      background: #334155;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #334155;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    thead {
+      background: #475569;
+    }
+    
+    th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #e2e8f0;
+    }
+    
+    th:nth-child(2),
+    th:nth-child(3),
+    th:nth-child(4),
+    th:nth-child(5) {
+      text-align: center;
+    }
+    
+    td {
+      padding: 14px 16px;
+      border-top: 1px solid #475569;
+    }
+    
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(5) {
+      text-align: center;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .ajah-name {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .ajah-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    
+    .deviation-good {
+      color: #7ED321;
+      font-weight: 600;
+    }
+    
+    .deviation-warning {
+      color: #F5A623;
+      font-weight: 600;
+    }
+    
+    .deviation-bad {
+      color: #D0021B;
+      font-weight: 600;
+    }
+    
+    .status {
+      font-size: 18px;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #cbd5e1;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚔️ Ajah Distribution Simulator</h1>
+    
+    <div class="controls">
+      <div class="control-group">
+        <label for="sim-count">Number of simulations:</label>
+        <input type="number" id="sim-count" value="1000" min="10" max="100000" step="100">
+      </div>
+      
+      <div class="control-group">
+        <label for="quiz-length">Questions per quiz:</label>
+        <input type="number" id="quiz-length" value="10" min="1" max="50">
+      </div>
+      
+      <button id="run-btn" onclick="runSimulation()">Run Simulation</button>
+    </div>
+    
+    <div class="results" id="results">
+      <div class="summary" id="summary"></div>
+      
+      <table id="results-table">
+        <thead>
+          <tr>
+            <th>Ajah</th>
+            <th>Target %</th>
+            <th>Win %</th>
+            <th>Avg Score %</th>
+            <th>Deviation</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="results-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script src="questions.js"></script>
+  <script>
+    const TARGETS = {
+      [AJAHS.BLUE]: 25,
+      [AJAHS.BROWN]: 20,
+      [AJAHS.GREEN]: 20,
+      [AJAHS.YELLOW]: 15,
+      [AJAHS.RED]: 10,
+      [AJAHS.GRAY]: 7,
+      [AJAHS.WHITE]: 3
+    };
+    
+    function shuffleArray(arr) {
+      const array = [...arr];
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+    
+    function selectRandomQuestions(count) {
+      const shuffled = shuffleArray(QUESTIONS);
+      return shuffled.slice(0, Math.min(count, shuffled.length));
+    }
+    
+    function runQuiz(questionCount) {
+      const scores = {};
+      Object.values(AJAHS).forEach(ajah => {
+        scores[ajah] = 0;
+      });
+      
+      const questions = selectRandomQuestions(questionCount);
+      
+      questions.forEach(question => {
+        const randomAnswer = question.answers[Math.floor(Math.random() * question.answers.length)];
+        randomAnswer.weights.forEach(({ajah, weight}) => {
+          scores[ajah] += weight;
+        });
+      });
+      
+      const totalPoints = Object.values(scores).reduce((sum, score) => sum + score, 0);
+      const percentages = {};
+      Object.entries(scores).forEach(([ajah, score]) => {
+        percentages[ajah] = totalPoints > 0 ? (score / totalPoints) * 100 : 0;
+      });
+      
+      const topAjah = Object.entries(scores)
+        .reduce((a, b) => b[1] > a[1] ? b : a)[0];
+      
+      return { scores, percentages, topAjah };
+    }
+    
+    function runSimulation() {
+      const simCount = parseInt(document.getElementById('sim-count').value);
+      const quizLength = parseInt(document.getElementById('quiz-length').value);
+      const button = document.getElementById('run-btn');
+      
+      button.disabled = true;
+      button.textContent = 'Running...';
+      
+      setTimeout(() => {
+        const winCounts = {};
+        const avgPercentages = {};
+        
+        Object.values(AJAHS).forEach(ajah => {
+          winCounts[ajah] = 0;
+          avgPercentages[ajah] = 0;
+        });
+        
+        for (let i = 0; i < simCount; i++) {
+          const result = runQuiz(quizLength);
+          winCounts[result.topAjah]++;
+          
+          Object.entries(result.percentages).forEach(([ajah, percentage]) => {
+            avgPercentages[ajah] += percentage;
+          });
+        }
+        
+        Object.keys(avgPercentages).forEach(ajah => {
+          avgPercentages[ajah] /= simCount;
+        });
+        
+        const winPercentages = {};
+        Object.entries(winCounts).forEach(([ajah, count]) => {
+          winPercentages[ajah] = (count / simCount) * 100;
+        });
+        
+        displayResults(winPercentages, avgPercentages, simCount, quizLength);
+        
+        button.disabled = false;
+        button.textContent = 'Run Simulation';
+      }, 100);
+    }
+    
+    function displayResults(winPercentages, avgPercentages, simCount, quizLength) {
+      const summary = document.getElementById('summary');
+      summary.textContent = `Ran ${simCount.toLocaleString()} simulations with ${quizLength} questions each`;
+      
+      const tbody = document.getElementById('results-body');
+      tbody.innerHTML = '';
+      
+      const sortedAjahs = Object.entries(TARGETS).sort((a, b) => b[1] - a[1]);
+      
+      sortedAjahs.forEach(([ajah, target]) => {
+        const actual = winPercentages[ajah] || 0;
+        const avgScore = avgPercentages[ajah] || 0;
+        const deviation = actual - target;
+        
+        let deviationClass = 'deviation-good';
+        let status = '✓';
+        if (Math.abs(deviation) > 7) {
+          deviationClass = 'deviation-bad';
+          status = '✗';
+        } else if (Math.abs(deviation) > 3) {
+          deviationClass = 'deviation-warning';
+          status = '⚠';
+        }
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>
+            <div class="ajah-name">
+              <span class="ajah-dot" style="background-color: ${AJAH_COLORS[ajah]}"></span>
+              ${ajah}
+            </div>
+          </td>
+          <td>${target.toFixed(1)}%</td>
+          <td><strong>${actual.toFixed(1)}%</strong></td>
+          <td>${avgScore.toFixed(1)}%</td>
+          <td class="${deviationClass}">
+            ${deviation >= 0 ? '+' : ''}${deviation.toFixed(1)}%
+          </td>
+          <td class="status">${status}</td>
+        `;
+        tbody.appendChild(row);
+      });
+      
+      document.getElementById('results').classList.add('show');
+    }
+  </script>
+</body>
+</html>
+

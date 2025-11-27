@@ -186,6 +186,43 @@ p {
   gap: 12px;
 }
 
+.binary-answers {
+  flex-direction: row;
+  gap: 16px;
+}
+
+.binary-answers .answer-btn {
+  flex: 1;
+  padding: 24px 20px;
+  font-size: 1.1rem;
+}
+
+.image-answers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.image-answer-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  min-height: 180px;
+}
+
+.answer-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.image-answer-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .answer-btn {
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -348,6 +385,23 @@ p {
   #pie-chart {
     width: 250px;
     height: 250px;
+  }
+
+  .binary-answers {
+    flex-direction: column;
+  }
+
+  .image-answers {
+    grid-template-columns: 1fr;
+  }
+
+  .answer-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .image-answer-btn {
+    min-height: 140px;
   }
 }
 

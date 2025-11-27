@@ -1,4 +1,3 @@
-README.me
 # Ajah Quiz - Wheel of Time
 
 A mobile-friendly quiz app to determine which Ajah from the Wheel of Time you belong to.
@@ -24,14 +23,14 @@ Edit `questions.js` and add a new question object to the `QUESTIONS` array:
 
 ```javascript
 {
-  id: 6,
-  question: "Your question here?",
-  answers: [
-    { text: "Answer 1", ajah: AJAHS.BLUE },
-    { text: "Answer 2", ajah: AJAHS.GREEN },
-    { text: "Answer 3", ajah: AJAHS.YELLOW },
-    { text: "Answer 4", ajah: AJAHS.RED }
-  ]
+  id: 6,
+  question: "Your question here?",
+  answers: [
+    { text: "Answer 1", ajah: AJAHS.BLUE },
+    { text: "Answer 2", ajah: AJAHS.GREEN },
+    { text: "Answer 3", ajah: AJAHS.YELLOW },
+    { text: "Answer 4", ajah: AJAHS.RED }
+  ]
 }
 ```
 
@@ -41,7 +40,7 @@ In `questions.js`, modify the `CONFIG` object:
 
 ```javascript
 const CONFIG = {
-  randomizeQuestions: false  // Set to true to randomize question order
+  randomizeQuestions: false  // Set to true to randomize question order
 };
 ```
 
@@ -62,3 +61,4 @@ const CONFIG = {
 - Mobile-first responsive design
 - Smooth animations and transitions
 - No data persistence (refreshing resets the quiz)
+

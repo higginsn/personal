@@ -1,62 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover which Ajah from the Wheel of Time you belong to">
-  <title>Find Your Ajah - Wheel of Time Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover which Ajah from the Wheel of Time you belong to">
+  <title>Find Your Ajah - Wheel of Time Quiz</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div id="intro-screen">
-      <div class="title-container">
-        <span class="title-icon">⚔</span>
-        <h1>Find Your Ajah</h1>
-        <span class="title-icon">⚔</span>
-      </div>
-      <p>Answer a series of questions to discover which Ajah from the Wheel of Time you are most aligned with.</p>
-      <div class="quiz-length-selection">
-        <button id="start-personality-btn" class="btn btn-length">
-          <div class="btn-label">Spoiler-Free Quiz</div>
-          <div class="btn-sublabel">Personality Based</div>
-        </button>
-        <button id="start-lore-btn" class="btn btn-length">
-          <div class="btn-label">For Fans Quiz</div>
-          <div class="btn-sublabel">Series Knowledge</div>
-        </button>
-      </div>
-    </div>
+  <div class="container">
+    <div id="intro-screen">
+      <div class="title-container">
+        <span class="title-icon">⚔️</span>
+        <h1>Find Your Ajah</h1>
+        <span class="title-icon">🌀</span>
+      </div>
+      <p>Answer a series of questions to discover which Ajah from the Wheel of Time you are most aligned with.</p>
+      <button id="start-btn" class="btn">Start Quiz</button>
+    </div>
 
-    <div id="quiz-screen" class="hidden">
-      <div class="progress-bar">
-        <div id="progress-fill" class="progress-fill"></div>
-      </div>
-      
-      <div class="question-container">
-        <div id="question-number" class="question-number"></div>
-        <div id="question-text" class="question-text"></div>
-      </div>
+    <div id="quiz-screen" class="hidden">
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      
+      <div class="question-container">
+        <div id="question-number" class="question-number"></div>
+        <div id="question-text" class="question-text"></div>
+      </div>
 
-      <div id="answers-container" class="answers"></div>
-      
-      <button id="back-btn" class="btn-secondary hidden">← Back</button>
-    </div>
+      <div id="answers-container" class="answers"></div>
+      
+      <button id="back-btn" class="btn-secondary hidden">← Back</button>
+    </div>
 
-    <div id="results-screen" class="hidden">
-      <div class="results-container">
-        <h2>Your Result</h2>
-        <div id="result-ajah" class="result-ajah"></div>
-        <p id="ajah-description" class="ajah-description"></p>
-        <p class="chart-header">Your Ajah Distribution:</p>
-        <canvas id="pie-chart" width="300" height="300"></canvas>
-        <div id="chart-container" class="chart-container"></div>
-        <button id="restart-btn" class="btn">Take Quiz Again</button>
-      </div>
-    </div>
-  </div>
+    <div id="results-screen" class="hidden">
+      <div class="results-container">
+        <h2>Your Result</h2>
+        <div id="result-ajah" class="result-ajah"></div>
+        <p id="ajah-description" class="ajah-description"></p>
+        <p class="chart-header">Your Ajah Distribution:</p>
+        <canvas id="pie-chart" width="300" height="300"></canvas>
+        <div id="chart-container" class="chart-container"></div>
+        <button id="restart-btn" class="btn">Take Quiz Again</button>
+      </div>
+    </div>
+  </div>
 
-  <script src="questions.js"></script>
-  <script src="app.js"></script>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
+

@@ -28,708 +28,616 @@ const AJAH_DESCRIPTIONS = {
   [AJAHS.BROWN]: 'Scholars and historians who immerse themselves in knowledge and study. Brown sisters often become so absorbed in their research they lose track of the world around them.'
 };
 
-const PERSONALITY_QUESTIONS = [
-  {
-    id: 1,
-    question: "When facing a difficult problem, you prefer to:",
-    answers: [
-      { text: "Analyze it logically and systematically", ajahs: [AJAHS.WHITE] },
-      { text: "Take immediate action to solve it", ajahs: [AJAHS.GREEN, AJAHS.RED] },
-      { text: "Research similar situations from the past", ajahs: [AJAHS.BROWN] },
-      { text: "Talk it through with others to find common ground", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 2,
-    question: "In a group project, you naturally gravitate toward:",
-    answers: [
-      { text: "Leading and organizing the team", ajahs: [AJAHS.RED, AJAHS.BLUE] },
-      { text: "Being the mediator when conflicts arise", ajahs: [AJAHS.GRAY] },
-      { text: "Doing research and gathering information", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Supporting others and keeping morale high", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 3,
-    question: "You believe the best way to change the world is through:",
-    answers: [
-      { text: "Direct action and fighting for what's right", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
-      { text: "Building bridges and fostering understanding", ajahs: [AJAHS.GRAY] },
-      { text: "Education and spreading knowledge", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Healing wounds and helping individuals", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 4,
-    question: "When someone comes to you with a problem, you:",
-    answers: [
-      { text: "Help them think through logical solutions", ajahs: [AJAHS.WHITE] },
-      { text: "Offer emotional support and comfort", ajahs: [AJAHS.YELLOW] },
-      { text: "Share similar experiences and wisdom", ajahs: [AJAHS.BROWN] },
-      { text: "Help them navigate the social dynamics involved", ajahs: [AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 5,
-    question: "Your ideal weekend involves:",
-    answers: [
-      { text: "Physical activity or adventure", ajahs: [AJAHS.GREEN] },
-      { text: "Reading, studying, or learning something new", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Volunteering or helping others", ajahs: [AJAHS.YELLOW] },
-      { text: "Socializing and connecting with people", ajahs: [AJAHS.GRAY, AJAHS.BLUE] }
-    ]
-  },
-  {
-    id: 6,
-    question: "When making an important decision, you rely most on:",
-    answers: [
-      { text: "Pure logic and objective analysis", ajahs: [AJAHS.WHITE] },
-      { text: "Your gut instinct and experience", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
-      { text: "Historical precedents and research", ajahs: [AJAHS.BROWN] },
-      { text: "How it will affect others", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 7,
-    question: "People often describe you as:",
-    answers: [
-      { text: "Passionate and driven", ajahs: [AJAHS.BLUE, AJAHS.RED] },
-      { text: "Brave and protective", ajahs: [AJAHS.GREEN] },
-      { text: "Wise and knowledgeable", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Caring and diplomatic", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 8,
-    question: "In your career, you prioritize:",
-    answers: [
-      { text: "Making a meaningful impact on society", ajahs: [AJAHS.BLUE] },
-      { text: "Protecting or defending others", ajahs: [AJAHS.GREEN] },
-      { text: "Understanding and mastering your field", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Building relationships and consensus", ajahs: [AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 9,
-    question: "When you see injustice, you:",
-    answers: [
-      { text: "Feel compelled to fight against it directly", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
-      { text: "Work to create systems that prevent it", ajahs: [AJAHS.RED, AJAHS.WHITE] },
-      { text: "Try to mediate and find fair solutions", ajahs: [AJAHS.GRAY] },
-      { text: "Focus on helping the victims", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 10,
-    question: "Your approach to learning new things is:",
-    answers: [
-      { text: "Hands-on practice and experimentation", ajahs: [AJAHS.GREEN] },
-      { text: "Deep study and theoretical understanding", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Learning from others and collaboration", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] },
-      { text: "Focused on practical applications", ajahs: [AJAHS.BLUE, AJAHS.RED] }
-    ]
-  },
-  {
-    id: 11,
-    question: "In stressful situations, you tend to:",
-    answers: [
-      { text: "Take charge and direct others", ajahs: [AJAHS.RED, AJAHS.BLUE] },
-      { text: "Stay calm and think logically", ajahs: [AJAHS.WHITE] },
-      { text: "Focus on keeping everyone safe and calm", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] },
-      { text: "Draw on past experiences for guidance", ajahs: [AJAHS.BROWN] }
-    ]
-  },
-  {
-    id: 12,
-    question: "You feel most fulfilled when:",
-    answers: [
-      { text: "Achieving ambitious goals", ajahs: [AJAHS.BLUE, AJAHS.RED] },
-      { text: "Protecting those you care about", ajahs: [AJAHS.GREEN] },
-      { text: "Discovering or preserving knowledge", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Helping others overcome challenges", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 13,
-    question: "Your philosophy on rules and authority is:",
-    answers: [
-      { text: "Rules maintain necessary order and structure", ajahs: [AJAHS.RED, AJAHS.WHITE] },
-      { text: "Rules should be flexible based on circumstances", ajahs: [AJAHS.GRAY, AJAHS.BLUE] },
-      { text: "Rules are less important than helping people", ajahs: [AJAHS.YELLOW] },
-      { text: "Historical context helps us understand rules", ajahs: [AJAHS.BROWN] }
-    ]
-  },
-  {
-    id: 14,
-    question: "When working on a long-term project, you:",
-    answers: [
-      { text: "Create detailed plans and systems", ajahs: [AJAHS.WHITE, AJAHS.RED] },
-      { text: "Stay adaptable and ready for anything", ajahs: [AJAHS.GREEN, AJAHS.GRAY] },
-      { text: "Research thoroughly before beginning", ajahs: [AJAHS.BROWN] },
-      { text: "Focus on how it will benefit others", ajahs: [AJAHS.BLUE, AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 15,
-    question: "Your greatest strength is:",
-    answers: [
-      { text: "Your unwavering determination", ajahs: [AJAHS.BLUE, AJAHS.RED] },
-      { text: "Your courage under pressure", ajahs: [AJAHS.GREEN] },
-      { text: "Your analytical mind", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Your empathy and understanding", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 16,
-    question: "In debates or discussions, you:",
-    answers: [
-      { text: "Present logical arguments backed by evidence", ajahs: [AJAHS.WHITE] },
-      { text: "Speak passionately about your beliefs", ajahs: [AJAHS.BLUE] },
-      { text: "Seek consensus and common ground", ajahs: [AJAHS.GRAY] },
-      { text: "Reference historical examples", ajahs: [AJAHS.BROWN] }
-    ]
-  },
-  {
-    id: 17,
-    question: "You're most interested in:",
-    answers: [
-      { text: "Political systems and social change", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Physical skills and self-improvement", ajahs: [AJAHS.GREEN] },
-      { text: "Academic subjects and theories", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Psychology and human wellbeing", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 18,
-    question: "When you fail at something, you:",
-    answers: [
-      { text: "Analyze what went wrong objectively", ajahs: [AJAHS.WHITE] },
-      { text: "Get back up and try again immediately", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
-      { text: "Research better approaches for next time", ajahs: [AJAHS.BROWN] },
-      { text: "Consider how to prevent others from the same mistake", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 19,
-    question: "Your ideal work environment is:",
-    answers: [
-      { text: "Dynamic and action-oriented", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
-      { text: "Quiet and contemplative", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Collaborative and team-focused", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] },
-      { text: "Structured and well-organized", ajahs: [AJAHS.RED] }
-    ]
-  },
-  {
-    id: 20,
-    question: "What legacy would you most want to leave?",
-    answers: [
-      { text: "A world that's more just and fair", ajahs: [AJAHS.BLUE] },
-      { text: "Having protected those who couldn't protect themselves", ajahs: [AJAHS.GREEN] },
-      { text: "Knowledge preserved for future generations", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Lives improved through your compassion", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  }
-];
+/**
+ * STRICT MAPPING CRITERIA
+ * 
+ * These criteria define when a personality trait or answer should map to each Ajah.
+ * Use these rules when creating questions and assigning weights.
+ * 
+ * TARGET DISTRIBUTION (when selecting 10 random questions):
+ * Blue: 25% (Most common) | Brown: 20% (Most common) | Green: 20% (Most common)
+ * Yellow: 15% (Common) | Red: 10% (Less common) | Gray: 7% (Rare) | White: 3% (Rarest)
+ */
 
-const LORE_QUESTIONS = [
+const AJAH_MAPPING_CRITERIA = {
+  
+  [AJAHS.BLUE]: {
+    targetPercentage: 25,
+    coreTraits: [
+      "Passionate about causes and justice",
+      "Believes in active intervention to fix problems",
+      "Politically engaged or cause-driven",
+      "Cannot stand injustice without acting",
+      "Idealistic - believes change is possible and necessary"
+    ],
+    mapWhen: [
+      "Taking action based on strong beliefs about right/wrong",
+      "Advocating for others or a cause",
+      "Speaking up when witnessing injustice",
+      "Getting involved in problems that 'aren't your business'",
+      "Prioritizing principles over comfort or convenience"
+    ],
+    doNotMapWhen: [
+      "Just being opinionated (that's not the same as justice-driven)",
+      "General helping (unless specifically cause-based)",
+      "Compromise or diplomacy (that's Gray)",
+      "Following rules (that's Red)"
+    ],
+    weight: {
+      high: "Primary motivation is justice/cause",
+      medium: "Justice is secondary factor",
+      low: "Tangentially related to principles"
+    }
+  },
+
+  [AJAHS.GREEN]: {
+    targetPercentage: 20,
+    coreTraits: [
+      "Action-oriented over deliberation",
+      "Physical and confrontational when needed",
+      "Brave and protective",
+      "Competitive and direct",
+      "Doesn't overthink - acts on instinct"
+    ],
+    mapWhen: [
+      "Choosing immediate action over planning",
+      "Physical responses (movement, activity, confrontation)",
+      "Direct/blunt communication",
+      "Protective instincts ('I'll handle this')",
+      "Competitive scenarios",
+      "Confronting problems head-on",
+      "Taking risks or shortcuts"
+    ],
+    doNotMapWhen: [
+      "Violence for its own sake (Green fights for a reason)",
+      "Thoughtless impulsivity (Green is brave, not reckless)",
+      "Passive aggression (Green is direct)"
+    ],
+    weight: {
+      high: "Physical action or direct confrontation",
+      medium: "Bold action without extensive deliberation",
+      low: "Generally active/energetic approach"
+    }
+  },
+
+  [AJAHS.YELLOW]: {
+    targetPercentage: 15,
+    coreTraits: [
+      "Actively helps and heals others",
+      "Nurturing and caretaking",
+      "Patient with others' struggles",
+      "Prioritizes others' wellbeing",
+      "Empathetic and emotionally supportive"
+    ],
+    mapWhen: [
+      "Active caretaking behaviors",
+      "Checking on someone's wellbeing",
+      "Patient helping, especially when others struggle",
+      "Putting others' needs first",
+      "Providing emotional or physical support",
+      "Being gentle/kind in correcting others",
+      "Listening without judgment"
+    ],
+    doNotMapWhen: [
+      "Just being nice or polite (not the same as healing)",
+      "Helping out of duty (that's Red)",
+      "Helping to fix a problem you care about (that's Blue)"
+    ],
+    weight: {
+      high: "Direct caretaking or healing behavior",
+      medium: "Consideration for others' feelings/needs",
+      low: "General kindness or empathy"
+    }
+  },
+
+  [AJAHS.RED]: {
+    targetPercentage: 10,
+    coreTraits: [
+      "Rule-focused and disciplined",
+      "Values structure and order",
+      "Traditional over innovative",
+      "Vigilant and suspicious of rule-breakers",
+      "Duty over personal desire",
+      "Maintains boundaries strictly"
+    ],
+    mapWhen: [
+      "Following rules even when inconvenient",
+      "Enforcing rules or calling out violations",
+      "Maintaining discipline or structure",
+      "Duty/obligation over personal preference",
+      "Suspicion or wariness of disorder",
+      "Judging others for breaking rules",
+      "Rigid adherence to commitments"
+    ],
+    doNotMapWhen: [
+      "Just being organized (that's not the same as discipline)",
+      "Being judgmental in general (Red specifically about rules/order)",
+      "Personal boundaries (Red is about societal order)"
+    ],
+    weight: {
+      high: "Explicit rule-following or duty",
+      medium: "Preference for structure/tradition",
+      low: "Discomfort with chaos"
+    }
+  },
+
+  [AJAHS.BROWN]: {
+    targetPercentage: 20,
+    coreTraits: [
+      "Absorbed in ideas and learning",
+      "Absent-minded about practical matters",
+      "Curious for curiosity's sake",
+      "Gets lost in thought",
+      "Oblivious to social dynamics"
+    ],
+    mapWhen: [
+      "Getting lost in research or learning",
+      "Forgetting practical things due to distraction",
+      "Knowledge-seeking for its own sake",
+      "Missing social cues or obligations",
+      "Preferring information/media over social interaction",
+      "Correcting factual errors"
+    ],
+    doNotMapWhen: [
+      "Using knowledge strategically (that's Blue or White)",
+      "Research for a practical purpose (that's just being prepared)",
+      "Being socially awkward (Brown is oblivious, not awkward)"
+    ],
+    weight: {
+      high: "Lost in knowledge/thought to exclusion of surroundings",
+      medium: "Prioritizing learning or ideas",
+      low: "General intellectual interest"
+    }
+  },
+
+  [AJAHS.WHITE]: {
+    targetPercentage: 3,
+    coreTraits: [
+      "Purely theoretical/philosophical thinking",
+      "Logic as an end in itself",
+      "Emotionally detached from outcomes",
+      "Questions fundamental assumptions",
+      "Abstract over concrete"
+    ],
+    mapWhen: [
+      "Pure philosophical questions ('What is the nature of X?')",
+      "Treating situations as logical puzzles divorced from emotion",
+      "Questioning the fundamental premise rather than engaging",
+      "Choosing abstract conceptual answers over practical ones",
+      "Explicitly preferring theory over application"
+    ],
+    doNotMapWhen: [
+      "Being logical or rational (everyone does this sometimes)",
+      "Analyzing situations (that's just thinking)",
+      "Correcting someone (that's Brown)",
+      "Unemotional communication (that could be Red or Green)"
+    ],
+    weight: {
+      high: "Explicit philosophical/abstract reasoning detached from emotion",
+      medium: "RARELY USED",
+      low: "ALMOST NEVER USE - White should be extremely rare"
+    },
+    note: "White should appear in <5% of questions and only specific answers"
+  },
+
+  [AJAHS.GRAY]: {
+    targetPercentage: 7,
+    coreTraits: [
+      "Mediates between OTHER parties",
+      "Diplomatic negotiator",
+      "Sees all perspectives equally",
+      "Skilled at finding middle ground",
+      "Treaty-maker mindset"
+    ],
+    mapWhen: [
+      "Actively mediating between two other people",
+      "Bringing conflicting parties together",
+      "Facilitating communication between others",
+      "Finding diplomatic solutions to others' conflicts",
+      "Professional/formal mediation instinct"
+    ],
+    doNotMapWhen: [
+      "Personal compromise (everyone compromises)",
+      "Seeing both sides of an issue (that's just being reasonable)",
+      "Being flexible (that's not the same as mediating)",
+      "Avoiding conflict (Gray engages with conflict to resolve it)"
+    ],
+    weight: {
+      high: "Explicitly mediating between other parties",
+      medium: "Facilitating dialogue/understanding between others",
+      low: "RARELY USE - Gray should be rare, only in specific mediation scenarios"
+    },
+    note: "Gray should only appear when specifically mediating others' conflicts"
+  }
+};
+
+/**
+ * QUESTION DESIGN GUIDELINES
+ * 
+ * 1. Each question should have answers that naturally map to different Ajahs
+ * 2. The "most common" answer should favor Blue, Brown, or Green (our target 25%, 20%, 20%)
+ * 3. Avoid forced scenarios - situations should feel realistic
+ * 4. Use varied question formats (multiple choice, binary, image selection)
+ * 5. Keep language casual and relatable
+ * 
+ * WEIGHT GUIDELINES:
+ * - Weight 4-5: This is THE primary Ajah for this answer
+ * - Weight 3: This clearly fits this Ajah
+ * - Weight 2: This somewhat fits this Ajah
+ * - Weight 1: This tangentially relates to this Ajah
+ * 
+ * An answer can map to multiple Ajahs if the personality trait genuinely fits both.
+ * However, most answers should map to 1-3 Ajahs maximum to maintain distinction.
+ */
+
+const QUESTIONS = [
   {
     id: 1,
-    question: "A great war is approaching. How do you prepare?",
+    type: 'binary',
+    question: "Would you rather?",
     answers: [
-      { text: "Train with weapons and prepare for battle", ajahs: [AJAHS.GREEN] },
-      { text: "Study healing so I can save lives", ajahs: [AJAHS.YELLOW] },
-      { text: "Build alliances and rally forces to the cause", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Research ancient texts for tactical knowledge", ajahs: [AJAHS.BROWN] }
+      {
+        text: "Go out",
+        weights: [
+          {ajah: AJAHS.BLUE, weight: 1},
+          {ajah: AJAHS.GREEN, weight: 1},
+          {ajah: AJAHS.YELLOW, weight: 1},
+          {ajah: AJAHS.GRAY, weight: 1}
+        ]
+      },
+      {
+        text: "Stay in",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1},
+          {ajah: AJAHS.RED, weight: 1},
+          {ajah: AJAHS.WHITE, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 2,
-    question: "You discover a man who can channel. What do you do?",
+    type: 'multiple_choice',
+    question: "Which do you enjoy most out of these?",
     answers: [
-      { text: "He must be gentled immediately for everyone's safety", ajahs: [AJAHS.RED] },
-      { text: "Seek to understand why this happens through study", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Help him while there's still time, ease his suffering", ajahs: [AJAHS.YELLOW] },
-      { text: "Report to the proper authorities and let them handle it", ajahs: [AJAHS.GRAY, AJAHS.RED] }
+      {
+        text: "Trying something new",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1},
+          {ajah: AJAHS.BLUE, weight: 1}
+        ]
+      },
+      {
+        text: "Talking to new people",
+        weights: [
+          {ajah: AJAHS.GRAY, weight: 1},
+          {ajah: AJAHS.YELLOW, weight: 1}
+        ]
+      },
+      {
+        text: "Learning a new interest",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1},
+          {ajah: AJAHS.WHITE, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 3,
-    question: "Two nations are on the brink of war. What is your role?",
+    type: 'multiple_choice',
+    question: "Which of these is your biggest flaw?",
     answers: [
-      { text: "Negotiate a treaty and find common ground", ajahs: [AJAHS.GRAY] },
-      { text: "Determine which side serves the greater good", ajahs: [AJAHS.BLUE] },
-      { text: "Stand ready to defend the innocent", ajahs: [AJAHS.GREEN] },
-      { text: "Study the historical causes of their conflict", ajahs: [AJAHS.BROWN, AJAHS.WHITE] }
+      {
+        text: "I have a short temper",
+        weights: [
+          {ajah: AJAHS.RED, weight: 1}
+        ]
+      },
+      {
+        text: "I rarely leave my comfort zone",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      },
+      {
+        text: "I have a low attention span",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      },
+      {
+        text: "I tend to use cold logic to ignore feelings",
+        weights: [
+          {ajah: AJAHS.WHITE, weight: 1},
+          {ajah: AJAHS.RED, weight: 1}
+        ]
+      },
+      {
+        text: "I enjoy meddling or gossiping",
+        weights: [
+          {ajah: AJAHS.GRAY, weight: 1},
+          {ajah: AJAHS.YELLOW, weight: 1}
+        ]
+      },
+      {
+        text: "I can be very stubborn",
+        weights: [
+          {ajah: AJAHS.BLUE, weight: 1},
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 4,
-    question: "What draws you most to the White Tower?",
+    type: 'multiple_choice',
+    question: "Which of these is your greatest strength?",
     answers: [
-      { text: "Access to the greatest library in the world", ajahs: [AJAHS.BROWN] },
-      { text: "Learning to heal with the One Power", ajahs: [AJAHS.YELLOW] },
-      { text: "The chance to shape the fate of nations", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Protecting the world from the Dark One", ajahs: [AJAHS.GREEN, AJAHS.RED] }
+      {
+        text: "I am proactive and fiery",
+        weights: [
+          {ajah: AJAHS.RED, weight: 1},
+          {ajah: AJAHS.BLUE, weight: 1}
+        ]
+      },
+      {
+        text: "I am empathetic and caring",
+        weights: [
+          {ajah: AJAHS.YELLOW, weight: 1}
+        ]
+      },
+      {
+        text: "I am calm and thoughtful",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      },
+      {
+        text: "I am easy to get along with",
+        weights: [
+          {ajah: AJAHS.GRAY, weight: 1},
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      },
+      {
+        text: "I am helpful and friendly",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      },
+      {
+        text: "I am a problem solver",
+        weights: [
+          {ajah: AJAHS.WHITE, weight: 1},
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 5,
-    question: "A philosophical debate arises in the Tower. You...",
+    type: 'multiple_choice',
+    question: "Which would be your role in a book?",
     answers: [
-      { text: "Engage deeply, seeking truth through logic", ajahs: [AJAHS.WHITE] },
-      { text: "Find a compromise that satisfies all parties", ajahs: [AJAHS.GRAY] },
-      { text: "Consult historical texts for precedent", ajahs: [AJAHS.BROWN] },
-      { text: "Focus on practical matters instead", ajahs: [AJAHS.GREEN, AJAHS.YELLOW] }
+      {
+        text: "The hero",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1},
+          {ajah: AJAHS.BLUE, weight: 1},
+          {ajah: AJAHS.RED, weight: 1}
+        ]
+      },
+      {
+        text: "The mysterious side character",
+        weights: [
+          {ajah: AJAHS.BLUE, weight: 1}
+        ]
+      },
+      {
+        text: "The morally grey character",
+        weights: [
+          {ajah: AJAHS.WHITE, weight: 1},
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      },
+      {
+        text: "The supporting character",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1},
+          {ajah: AJAHS.YELLOW, weight: 1},
+          {ajah: AJAHS.GRAY, weight: 1}
+        ]
+      },
+      {
+        text: "I don't fit a specific role",
+        weights: [
+          {ajah: AJAHS.GRAY, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 6,
-    question: "How do you view the role of Warders?",
+    type: 'multiple_choice',
+    question: "What is your weapon of choice?",
     answers: [
-      { text: "Essential partners in battle - I'd bond several", ajahs: [AJAHS.GREEN] },
-      { text: "A useful tool but not necessary for my work", ajahs: [AJAHS.RED] },
-      { text: "A deep bond that enhances both Aes Sedai and Warder", ajahs: [AJAHS.BLUE, AJAHS.YELLOW, AJAHS.GRAY] },
-      { text: "An interesting subject for contemplation", ajahs: [AJAHS.WHITE, AJAHS.BROWN] }
+      {
+        text: "A Sword",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      },
+      {
+        text: "A Pen",
+        weights: [
+          {ajah: AJAHS.GRAY, weight: 1},
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      },
+      {
+        text: "An Army",
+        weights: [
+          {ajah: AJAHS.RED, weight: 1}
+        ]
+      },
+      {
+        text: "Strategy",
+        weights: [
+          {ajah: AJAHS.BLUE, weight: 1},
+        ]
+      },
+      {
+        text: "Avoidance",
+        weights: [
+          {ajah: AJAHS.YELLOW, weight: 1},
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 7,
-    question: "The Amyrlin Seat asks for your counsel. You focus on...",
+    type: 'multiple_choice',
+    question: "What trait do you most admire in others?",
     answers: [
-      { text: "Political strategy and international relations", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "The Tower's military readiness", ajahs: [AJAHS.GREEN] },
-      { text: "The philosophical implications of her decision", ajahs: [AJAHS.WHITE] },
-      { text: "Historical precedent for similar situations", ajahs: [AJAHS.BROWN] }
+      {
+        text: "Determination",
+        weights: [
+          {ajah: AJAHS.BLUE, weight: 1}
+        ]
+      },
+      {
+        text: "Adaptability",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1},
+          {ajah: AJAHS.GRAY, weight: 1}
+        ]
+      },
+      {
+        text: "Honesty",
+        weights: [
+          {ajah: AJAHS.RED, weight: 1},
+          {ajah: AJAHS.WHITE, weight: 1}
+        ]
+      },
+      {
+        text: "Reliability",
+        weights: [
+          {ajah: AJAHS.YELLOW, weight: 1}
+        ]
+      },
+      {
+        text: "Thoughtfulness",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 8,
-    question: "A village suffers from a mysterious illness. You...",
+    type: 'multiple_choice',
+    question: "If you could rid the world of one of the following, which would it be?",
     answers: [
-      { text: "Immediately begin healing the afflicted", ajahs: [AJAHS.YELLOW] },
-      { text: "Investigate the logical cause of the disease", ajahs: [AJAHS.WHITE, AJAHS.YELLOW] },
-      { text: "Check historical records for similar outbreaks", ajahs: [AJAHS.BROWN] },
-      { text: "Organize aid and coordinate with local leaders", ajahs: [AJAHS.GRAY, AJAHS.BLUE] }
+      {
+        text: "Illness",
+        weights: [
+          {ajah: AJAHS.YELLOW, weight: 1}
+        ]
+      },
+      {
+        text: "Injustice",
+        weights: [
+          {ajah: AJAHS.GRAY, weight: 1},
+          {ajah: AJAHS.BLUE, weight: 1}
+        ]
+      },
+      {
+        text: "Men with too much power",
+        weights: [
+          {ajah: AJAHS.RED, weight: 1}
+        ]
+      },
+      {
+        text: "War",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      },
+      {
+        text: "Stupidity",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1},
+          {ajah: AJAHS.WHITE, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 9,
-    question: "What is your greatest strength?",
+    type: 'multiple_choice',
+    question: "If you have to do something, how do you go about it?",
     answers: [
-      { text: "My dedication to a righteous cause", ajahs: [AJAHS.BLUE] },
-      { text: "My courage and martial skill", ajahs: [AJAHS.GREEN] },
-      { text: "My compassion and healing abilities", ajahs: [AJAHS.YELLOW] },
-      { text: "My ability to find common ground", ajahs: [AJAHS.GRAY] }
+      {
+        text: "I do it immediately",
+        weights: [
+          {ajah: AJAHS.RED, weight: 1},
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      },
+      {
+        text: "That depends on who asked me to do it",
+        weights: [
+          {ajah: AJAHS.BLUE, weight: 1}
+        ]
+      },
+      {
+        text: "I like to think about it first",
+        weights: [
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      },
+      {
+        text: "I'll do more important tasks then get to it later",
+        weights: [
+          {ajah: AJAHS.YELLOW, weight: 1}
+        ]
+      }
     ]
   },
   {
     id: 10,
-    question: "In your free time, you prefer to...",
+    type: 'multiple_choice',
+    question: "How do you handle authority?",
     answers: [
-      { text: "Read extensively in the Tower library", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Practice sword forms and battle weaves", ajahs: [AJAHS.GREEN] },
-      { text: "Study new healing techniques", ajahs: [AJAHS.YELLOW] },
-      { text: "Engage in discussion and debate", ajahs: [AJAHS.GRAY, AJAHS.WHITE, AJAHS.BLUE] }
-    ]
-  },
-  {
-    id: 11,
-    question: "What is your view on the Three Oaths?",
-    answers: [
-      { text: "Essential to maintaining Aes Sedai credibility", ajahs: [AJAHS.GRAY, AJAHS.WHITE] },
-      { text: "A burden that limits our effectiveness in battle", ajahs: [AJAHS.GREEN] },
-      { text: "A necessary compromise with the world", ajahs: [AJAHS.BLUE] },
-      { text: "Irrelevant to my work", ajahs: [AJAHS.BROWN, AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 12,
-    question: "A False Dragon has declared himself. Your response?",
-    answers: [
-      { text: "Lead the force to capture and gentle him", ajahs: [AJAHS.RED, AJAHS.GREEN] },
-      { text: "Negotiate with his followers to minimize bloodshed", ajahs: [AJAHS.GRAY] },
-      { text: "Study the prophecies to understand the implications", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Work to ensure stability and prevent chaos", ajahs: [AJAHS.BLUE] }
-    ]
-  },
-  {
-    id: 13,
-    question: "The Hall of the Tower is deeply divided. You...",
-    answers: [
-      { text: "Push forcefully for what you believe is right", ajahs: [AJAHS.BLUE, AJAHS.RED] },
-      { text: "Seek middle ground through careful negotiation", ajahs: [AJAHS.GRAY] },
-      { text: "Analyze the situation logically before acting", ajahs: [AJAHS.WHITE] },
-      { text: "Focus on your own work rather than politics", ajahs: [AJAHS.BROWN, AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 14,
-    question: "An Accepted asks for your guidance. You emphasize...",
-    answers: [
-      { text: "The importance of serving a greater cause", ajahs: [AJAHS.BLUE] },
-      { text: "Readiness and preparation for any threat", ajahs: [AJAHS.GREEN] },
-      { text: "Compassion and the healing arts", ajahs: [AJAHS.YELLOW] },
-      { text: "The pursuit of knowledge above all", ajahs: [AJAHS.BROWN, AJAHS.WHITE] }
-    ]
-  },
-  {
-    id: 15,
-    question: "Darkfriends have infiltrated a city. How do you proceed?",
-    answers: [
-      { text: "Root them out swiftly and decisively", ajahs: [AJAHS.GREEN, AJAHS.RED] },
-      { text: "Gather intelligence before making a move", ajahs: [AJAHS.GRAY, AJAHS.BLUE] },
-      { text: "Research historical patterns of Shadow activity", ajahs: [AJAHS.BROWN] },
-      { text: "Prepare to heal those harmed by the Shadow", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 16,
-    question: "What quality do you most admire in others?",
-    answers: [
-      { text: "Dedication to justice and righteousness", ajahs: [AJAHS.BLUE] },
-      { text: "Courage and strength in adversity", ajahs: [AJAHS.GREEN] },
-      { text: "Wisdom and scholarly achievement", ajahs: [AJAHS.BROWN] },
-      { text: "Diplomatic skill and tact", ajahs: [AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 17,
-    question: "A ter'angreal of unknown purpose is discovered. You...",
-    answers: [
-      { text: "Study it exhaustively to understand its function", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Test it carefully to determine if it's useful in battle", ajahs: [AJAHS.GREEN] },
-      { text: "Examine if it has healing applications", ajahs: [AJAHS.YELLOW] },
-      { text: "Secure it and report to proper channels", ajahs: [AJAHS.RED, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 18,
-    question: "The Dragon Reborn has been found. What is your priority?",
-    answers: [
-      { text: "Guide him toward the Last Battle", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
-      { text: "Prevent him from going mad and destroying everything", ajahs: [AJAHS.RED] },
-      { text: "Study the prophecies to understand what must happen", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Negotiate alliances needed for Tarmon Gai'don", ajahs: [AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 19,
-    question: "Your greatest fear is...",
-    answers: [
-      { text: "Being unable to make a difference when it matters", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
-      { text: "Losing control of dangerous channelers", ajahs: [AJAHS.RED] },
-      { text: "Making an illogical or incorrect decision", ajahs: [AJAHS.WHITE] },
-      { text: "Important knowledge being lost forever", ajahs: [AJAHS.BROWN] }
-    ]
-  },
-  {
-    id: 20,
-    question: "A sister from another Ajah criticizes your methods. You...",
-    answers: [
-      { text: "Defend your approach if you believe you're right", ajahs: [AJAHS.BLUE, AJAHS.RED] },
-      { text: "Seek to understand their perspective and find compromise", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] },
-      { text: "Explain your reasoning logically and dispassionately", ajahs: [AJAHS.WHITE] },
-      { text: "Ignore the criticism and continue your work", ajahs: [AJAHS.BROWN, AJAHS.GREEN] }
-    ]
-  },
-  {
-    id: 21,
-    question: "What environment do you thrive in?",
-    answers: [
-      { text: "The councils of kings and queens", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "The training grounds and field of battle", ajahs: [AJAHS.GREEN] },
-      { text: "The sick rooms and healing halls", ajahs: [AJAHS.YELLOW] },
-      { text: "The quiet of libraries and archives", ajahs: [AJAHS.BROWN, AJAHS.WHITE] }
-    ]
-  },
-  {
-    id: 22,
-    question: "An ancient evil stirs in the Blight. Your role is...",
-    answers: [
-      { text: "Stand at the front lines with sword and Power", ajahs: [AJAHS.GREEN] },
-      { text: "Organize the defense and rally forces", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Research what this evil is and how to fight it", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Prepare to save those who will be wounded", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 23,
-    question: "How do you view the Kin (wilders who left the Tower)?",
-    answers: [
-      { text: "They must be brought back under Tower authority", ajahs: [AJAHS.RED] },
-      { text: "They could be valuable allies if approached correctly", ajahs: [AJAHS.GRAY, AJAHS.BLUE] },
-      { text: "An interesting case study in channeling without training", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Potential helpers in the healing arts", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 24,
-    question: "A monarch refuses to heed Tower guidance. You...",
-    answers: [
-      { text: "Find ways to work around their stubbornness", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Make them understand the consequences of defiance", ajahs: [AJAHS.RED] },
-      { text: "Study what motivates them and adjust approach", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Focus on helping their people instead", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 25,
-    question: "What is the greatest strength of the White Tower?",
-    answers: [
-      { text: "Its ability to influence world events", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Its military power and readiness", ajahs: [AJAHS.GREEN] },
-      { text: "Its accumulated knowledge and wisdom", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Its traditions and established order", ajahs: [AJAHS.RED] }
-    ]
-  },
-  {
-    id: 26,
-    question: "A new weave has been discovered. Your interest is...",
-    answers: [
-      { text: "Whether it can be used in combat", ajahs: [AJAHS.GREEN] },
-      { text: "Whether it has healing applications", ajahs: [AJAHS.YELLOW] },
-      { text: "Understanding the theory behind how it works", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Whether it could be dangerous in wrong hands", ajahs: [AJAHS.RED] }
-    ]
-  },
-  {
-    id: 27,
-    question: "The Seanchan have landed on western shores. You...",
-    answers: [
-      { text: "Prepare for war and defend against the invasion", ajahs: [AJAHS.GREEN] },
-      { text: "Seek to negotiate and understand their culture", ajahs: [AJAHS.GRAY] },
-      { text: "Research their history and methods", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Work to free the damane (enslaved channelers)", ajahs: [AJAHS.BLUE, AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 28,
-    question: "What makes a good Aes Sedai?",
-    answers: [
-      { text: "Unwavering commitment to a righteous cause", ajahs: [AJAHS.BLUE] },
-      { text: "Strength, skill, and readiness for battle", ajahs: [AJAHS.GREEN] },
-      { text: "Compassion and dedication to healing", ajahs: [AJAHS.YELLOW] },
-      { text: "Wisdom gained through study and reflection", ajahs: [AJAHS.WHITE, AJAHS.BROWN] }
-    ]
-  },
-  {
-    id: 29,
-    question: "A village has been destroyed by Trollocs. You...",
-    answers: [
-      { text: "Hunt down the Trollocs before they strike again", ajahs: [AJAHS.GREEN] },
-      { text: "Heal survivors and help them rebuild", ajahs: [AJAHS.YELLOW] },
-      { text: "Investigate why Trollocs attacked here specifically", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Organize aid from neighboring regions", ajahs: [AJAHS.GRAY, AJAHS.BLUE] }
-    ]
-  },
-  {
-    id: 30,
-    question: "What is your opinion on bonding Warders?",
-    answers: [
-      { text: "Every sister should bond multiple Warders", ajahs: [AJAHS.GREEN] },
-      { text: "Unnecessary and potentially compromising", ajahs: [AJAHS.RED] },
-      { text: "A personal choice with pros and cons", ajahs: [AJAHS.GRAY, AJAHS.WHITE] },
-      { text: "Valuable for protection while doing important work", ajahs: [AJAHS.BLUE, AJAHS.YELLOW, AJAHS.BROWN] }
-    ]
-  },
-  {
-    id: 31,
-    question: "The Borderlands need aid against Shadowspawn. You...",
-    answers: [
-      { text: "Go personally to fight at their side", ajahs: [AJAHS.GREEN] },
-      { text: "Convince other nations to send support", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Study Shadowspawn weaknesses to advise them", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Establish healing stations near the Blight", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 32,
-    question: "What frustrates you most about the White Tower?",
-    answers: [
-      { text: "Too much debate, not enough action", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
-      { text: "Excessive restrictions on what we can do", ajahs: [AJAHS.RED] },
-      { text: "Not enough emphasis on study and learning", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Internal politics distracting from real work", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 33,
-    question: "A powerful sa'angreal is found. Who should control it?",
-    answers: [
-      { text: "Those who will use it to fight the Shadow", ajahs: [AJAHS.GREEN] },
-      { text: "The Red Ajah to prevent misuse", ajahs: [AJAHS.RED] },
-      { text: "Scholars who can study it properly", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "It should be locked away for safety", ajahs: [AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 34,
-    question: "You witness a sister breaking Tower law. You...",
-    answers: [
-      { text: "Report it immediately to proper authorities", ajahs: [AJAHS.RED, AJAHS.WHITE] },
-      { text: "Speak with her privately to understand why", ajahs: [AJAHS.GRAY, AJAHS.YELLOW] },
-      { text: "Consider whether the law itself is just", ajahs: [AJAHS.BLUE] },
-      { text: "Mind your own business unless it affects your work", ajahs: [AJAHS.BROWN, AJAHS.GREEN] }
-    ]
-  },
-  {
-    id: 35,
-    question: "What legacy do you hope to leave?",
-    answers: [
-      { text: "A world saved from the Shadow", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
-      { text: "Important discoveries or knowledge preserved", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Countless lives healed and saved", ajahs: [AJAHS.YELLOW] },
-      { text: "Peace and stability between nations", ajahs: [AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 36,
-    question: "The Aiel cross the Dragonwall. Your response?",
-    answers: [
-      { text: "Prepare defenses against potential invasion", ajahs: [AJAHS.GREEN] },
-      { text: "Seek to understand their purpose and negotiate", ajahs: [AJAHS.GRAY] },
-      { text: "Study their culture and the prophecies", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Work to prevent bloodshed on both sides", ajahs: [AJAHS.YELLOW, AJAHS.BLUE] }
-    ]
-  },
-  {
-    id: 37,
-    question: "A sister asks you to break your Oaths temporarily. You...",
-    answers: [
-      { text: "Refuse absolutely, the Oaths are inviolable", ajahs: [AJAHS.WHITE, AJAHS.GRAY] },
-      { text: "Consider it if the cause is just enough", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
-      { text: "Report this dangerous suggestion", ajahs: [AJAHS.RED] },
-      { text: "Examine the philosophical implications", ajahs: [AJAHS.BROWN] }
-    ]
-  },
-  {
-    id: 38,
-    question: "What draws you to the One Power?",
-    answers: [
-      { text: "The ability to change the world", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
-      { text: "The ability to heal and preserve life", ajahs: [AJAHS.YELLOW] },
-      { text: "Its fascinating complexity and mysteries", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "The responsibility to control its dangers", ajahs: [AJAHS.RED, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 39,
-    question: "The Amyrlin's eyes-and-ears report disturbing news. You...",
-    answers: [
-      { text: "Investigate personally if it involves the Shadow", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
-      { text: "Analyze the information for patterns and truth", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Coordinate with other sisters to respond appropriately", ajahs: [AJAHS.GRAY] },
-      { text: "Prepare for potential casualties", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 40,
-    question: "What is your view on Novices and Accepted?",
-    answers: [
-      { text: "They must be molded for the battles ahead", ajahs: [AJAHS.GREEN] },
-      { text: "They need firm guidance and discipline", ajahs: [AJAHS.RED] },
-      { text: "They should be encouraged to pursue knowledge", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "They need compassion as they learn difficult lessons", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 41,
-    question: "A nation's queen dies mysteriously. You...",
-    answers: [
-      { text: "Investigate thoroughly for signs of Shadow work", ajahs: [AJAHS.BLUE, AJAHS.GREEN] },
-      { text: "Help ensure smooth succession to prevent chaos", ajahs: [AJAHS.GRAY] },
-      { text: "Study similar historical cases for insight", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Focus on helping her family through grief", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 42,
-    question: "The Pattern weaves strangely. Ta'veren walk the world. You...",
-    answers: [
-      { text: "Seek to guide them toward necessary ends", ajahs: [AJAHS.BLUE] },
-      { text: "Prepare for the chaos they inevitably bring", ajahs: [AJAHS.GREEN, AJAHS.RED] },
-      { text: "Study the nature of ta'veren and the Pattern", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Try to mediate the disruptions they cause", ajahs: [AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 43,
-    question: "What aspect of Aes Sedai history interests you most?",
-    answers: [
-      { text: "Great battles against the Shadow", ajahs: [AJAHS.GREEN] },
-      { text: "The Breaking and the male Aes Sedai", ajahs: [AJAHS.RED, AJAHS.BROWN] },
-      { text: "The Age of Legends and lost knowledge", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Famous sisters who shaped nations", ajahs: [AJAHS.BLUE, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 44,
-    question: "A Forsaken has been freed from imprisonment. You...",
-    answers: [
-      { text: "Hunt them down with overwhelming force", ajahs: [AJAHS.GREEN] },
-      { text: "Warn those in positions of power", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Research their weaknesses from the Age of Legends", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Prepare to deal with victims of their evil", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 45,
-    question: "What is your opinion on Accepted testing in the Arches?",
-    answers: [
-      { text: "A necessary trial to prove dedication", ajahs: [AJAHS.RED, AJAHS.WHITE] },
-      { text: "A harsh but effective test of character", ajahs: [AJAHS.GREEN, AJAHS.BLUE] },
-      { text: "An interesting psychological phenomenon to study", ajahs: [AJAHS.BROWN] },
-      { text: "A traumatic experience that should be gentler", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] }
-    ]
-  },
-  {
-    id: 46,
-    question: "The Tower's influence in the world is waning. You...",
-    answers: [
-      { text: "Work actively to rebuild that influence", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Focus on maintaining military readiness instead", ajahs: [AJAHS.GREEN] },
-      { text: "Analyze why this happened and how to fix it", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "Concentrate on helping people directly", ajahs: [AJAHS.YELLOW] }
-    ]
-  },
-  {
-    id: 47,
-    question: "A sister is stilled (cut off from the Source). Your reaction?",
-    answers: [
-      { text: "Help her find purpose and meaning again", ajahs: [AJAHS.YELLOW, AJAHS.GRAY] },
-      { text: "Research if there's any way to Heal stilling", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "Accept it as just punishment if she broke laws", ajahs: [AJAHS.RED] },
-      { text: "Find ways she can still serve the Light", ajahs: [AJAHS.BLUE, AJAHS.GREEN] }
-    ]
-  },
-  {
-    id: 48,
-    question: "How do you feel about Aes Sedai agelessness?",
-    answers: [
-      { text: "A useful tool for commanding respect", ajahs: [AJAHS.BLUE, AJAHS.GRAY] },
-      { text: "Irrelevant to my work and studies", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "A reminder of the Oaths' price on longevity", ajahs: [AJAHS.YELLOW] },
-      { text: "A mark of power and authority", ajahs: [AJAHS.RED, AJAHS.GREEN] }
-    ]
-  },
-  {
-    id: 49,
-    question: "Tel'aran'rhiod (the World of Dreams) is discovered. You...",
-    answers: [
-      { text: "Learn to use it for gathering intelligence", ajahs: [AJAHS.GRAY, AJAHS.BLUE] },
-      { text: "Study its properties and rules extensively", ajahs: [AJAHS.WHITE, AJAHS.BROWN] },
-      { text: "See if it can be used to reach or heal people", ajahs: [AJAHS.YELLOW] },
-      { text: "Warn others about its dangers", ajahs: [AJAHS.RED] }
-    ]
-  },
-  {
-    id: 50,
-    question: "The Last Battle approaches. Your final thought is...",
-    answers: [
-      { text: "I will stand against the Shadow until the end", ajahs: [AJAHS.GREEN] },
-      { text: "I have served my cause with everything I have", ajahs: [AJAHS.BLUE] },
-      { text: "I hope the knowledge I preserved will help", ajahs: [AJAHS.BROWN, AJAHS.WHITE] },
-      { text: "I hope I saved enough lives to make a difference", ajahs: [AJAHS.YELLOW] }
+      {
+        text: "Rules exist for a reason",
+        weights: [
+          {ajah: AJAHS.GRAY, weight: 1},
+          {ajah: AJAHS.YELLOW, weight: 1},
+          {ajah: AJAHS.RED, weight: 1}
+        ]
+      },
+      {
+        text: "I have 'issues' with authority",
+        weights: [
+          {ajah: AJAHS.GREEN, weight: 1}
+        ]
+      },
+      {
+        text: "I live to serve... if they are stronger than I am",
+        weights: [
+          {ajah: AJAHS.WHITE, weight: 1},
+          {ajah: AJAHS.BROWN, weight: 1}
+        ]
+      },
+      {
+        text: "I try to find a way to become the authority",
+        weights: [
+          {ajah: AJAHS.BLUE, weight: 1}
+        ]
+      }
     ]
   }
 ];
@@ -738,6 +646,5 @@ const CONFIG = {
   randomizeQuestions: true,
   testMode: false,
   testQuestionCount: 3,
-  personalityQuizLength: 10,
-  loreQuizLength: 10
+  quizLength: 10
 };
