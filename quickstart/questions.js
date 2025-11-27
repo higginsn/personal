@@ -349,8 +349,7 @@ const QUESTIONS = [
       {
         text: "I tend to use cold logic to ignore feelings",
         weights: [
-          {ajah: AJAHS.WHITE, weight: 1},
-          {ajah: AJAHS.RED, weight: 1}
+          {ajah: AJAHS.WHITE, weight: 1}
         ]
       },
       {
@@ -407,10 +406,9 @@ const QUESTIONS = [
         ]
       },
       {
-        text: "I am a problem solver",
+        text: "I am logical and analytical",
         weights: [
-          {ajah: AJAHS.WHITE, weight: 1},
-          {ajah: AJAHS.BROWN, weight: 1}
+          {ajah: AJAHS.WHITE, weight: 1}
         ]
       }
     ]
@@ -517,14 +515,19 @@ const QUESTIONS = [
       {
         text: "Honesty",
         weights: [
-          {ajah: AJAHS.RED, weight: 1},
-          {ajah: AJAHS.WHITE, weight: 1}
+          {ajah: AJAHS.RED, weight: 1}
         ]
       },
       {
         text: "Reliability",
         weights: [
           {ajah: AJAHS.YELLOW, weight: 1}
+        ]
+      },
+	  {
+        text: "Rationality",
+        weights: [
+          {ajah: AJAHS.WHITE, weight: 1}
         ]
       },
       {
